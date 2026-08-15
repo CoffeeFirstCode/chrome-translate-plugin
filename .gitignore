@@ -1,0 +1,13 @@
+# 本地测试/诊断产生的目录
+.chrome-profile/
+.diag-*
+*.log
+
+# Node
+node_modules/
+npm-debug.log*
+
+# 系统文件
+Thumbs.db
+Desktop.ini
+.DS_Store
