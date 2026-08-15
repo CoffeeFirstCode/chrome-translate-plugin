@@ -7,6 +7,8 @@ export const DEFAULT_SETTINGS = {
   apiKey: '',
   // 模型名在 LM Studio 加载模型后，通过「测试连接 / 获取模型」自动填入
   model: '',
+  // 划选自动翻译开关：默认关闭，避免随意选中文本就触发翻译
+  selectionEnabled: false,
   styles: {
     originalColor: '#FFA500',   // 原文：橙黄色（仅字体颜色，非背景色）
     translationColor: '#FF0000' // 译文：红色（仅字体颜色，非背景色）
