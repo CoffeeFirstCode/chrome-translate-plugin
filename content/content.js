@@ -17,6 +17,7 @@
   let sequence = 0;
   let debounceTimer = null;
   let openedSettingsOnce = false;
+  let selectionEnabled = false; // 划选自动翻译开关（默认关闭，由 Popup 控制）
 
   // ---------- 样式配置 ----------
 
@@ -27,10 +28,12 @@
     root.style.setProperty('--et-translation-color', styles?.translationColor || DEFAULT_TRANSLATION_COLOR);
   }
 
-  function loadStyles() {
+  function loadSettingsState() {
     try {
       chrome.storage.local.get('settings').then((result) => {
-        applyStyles(result?.settings?.styles);
+        const settings = result?.settings || {};
+        applyStyles(settings.styles);
+        selectionEnabled = settings.selectionEnabled === true;
       }).catch(() => {});
     } catch {
       // 扩展上下文失效时忽略
@@ -40,14 +43,19 @@
   try {
     chrome.storage.onChanged.addListener((changes, area) => {
       if (area === 'local' && changes?.settings) {
-        applyStyles(changes.settings.newValue?.styles);
+        const settings = changes.settings.newValue || {};
+        applyStyles(settings.styles);
+        selectionEnabled = settings.selectionEnabled === true;
+        if (!selectionEnabled) {
+          removeCurrent();
+        }
       }
     });
   } catch {
     // ignore
   }
 
-  loadStyles();
+  loadSettingsState();
 
   // ---------- 工具函数 ----------
 
@@ -263,6 +271,9 @@
     const text = normalize(rawText);
     if (!text) return;
     if (text.length > MAX_TEXT_LENGTH) return;
+
+    // 划选自动翻译开关关闭时，不触发任何翻译
+    if (!selectionEnabled) return;
 
     const language = detectLanguage(text);
     // 划选高亮翻译：仅支持英译中（中译英在 Popup 主动翻译工具中使用）
