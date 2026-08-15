@@ -1,0 +1,55 @@
+/* 选中高亮翻译的样式（颜色由 content.js 写入 CSS 变量，可在插件设置中修改） */
+
+.et-original {
+  background: transparent !important;
+  background-color: transparent !important;
+  color: var(--et-original-color, #FFA500) !important;
+  font-weight: 700 !important;
+  font-size: 1.2em !important;
+  text-decoration: none !important;
+  border: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.et-translation {
+  display: block !important;
+  margin: 2px 0 4px !important;
+  padding: 2px 4px !important;
+  background: transparent !important;
+  background-color: transparent !important;
+  color: var(--et-translation-color, #FF0000) !important;
+  font-weight: 700 !important;
+  font-size: 0.9em !important;
+  text-decoration: none !important;
+  line-height: 1.4 !important;
+  white-space: pre-wrap !important;
+  word-break: break-word !important;
+  border: none !important;
+  border-radius: 0 !important;
+}
+
+.et-translation.et-loading {
+  color: #999999 !important;
+  font-style: italic !important;
+}
+
+.et-translation.et-error {
+  color: #999999 !important;
+  text-decoration: none !important;
+}
+
+.et-translation .et-close {
+  margin-left: 6px !important;
+  padding: 0 3px !important;
+  border: none !important;
+  background: transparent !important;
+  background-color: transparent !important;
+  color: inherit !important;
+  font-family: inherit !important;
+  font-size: 0.85em !important;
+  font-weight: 400 !important;
+  text-decoration: none !important;
+  line-height: 1 !important;
+  cursor: pointer !important;
+}

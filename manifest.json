@@ -1,0 +1,40 @@
+{
+  "manifest_version": 3,
+  "name": "AI 英译中助手",
+  "version": "1.0.0",
+  "description": "选中英文自动翻译成中文：原文加粗放大并显示橙黄色，译文显示在下方（红色、加粗）；Popup 支持英译中/中译英；支持 OpenAI 协议（本地 LM Studio）和翻译缓存。",
+  "permissions": [
+    "storage",
+    "unlimitedStorage"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "background": {
+    "service_worker": "background/service-worker.js",
+    "type": "module"
+  },
+  "action": {
+    "default_title": "AI 英译中助手",
+    "default_popup": "popup/popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content/content.js"],
+      "css": ["content/content.css"],
+      "run_at": "document_idle",
+      "all_frames": true
+    }
+  ]
+}
