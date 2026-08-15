@@ -1,0 +1,423 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  width: 380px;
+  margin: 0;
+  font-family: "Segoe UI", "Microsoft YaHei", system-ui, sans-serif;
+  font-size: 13px;
+  color: #222;
+  background: #f7f7f8;
+}
+
+.app-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  background: #fff;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.logo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  background: #ffa500;
+  color: #fff;
+  font-weight: 700;
+  font-size: 13px;
+}
+
+.app-header h1 {
+  margin: 0;
+  font-size: 15px;
+}
+
+.tabs {
+  display: flex;
+  background: #fff;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.tab-btn {
+  flex: 1;
+  padding: 9px 0;
+  border: none;
+  background: transparent;
+  font-size: 13px;
+  color: #555;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+}
+
+.tab-btn.active {
+  color: #e08600;
+  font-weight: 700;
+  border-bottom-color: #ffa500;
+}
+
+main {
+  max-height: 520px;
+  overflow-y: auto;
+  padding: 12px 14px;
+}
+
+.panel {
+  display: none;
+}
+
+.panel.active {
+  display: block;
+}
+
+.direction-switch {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 4px;
+}
+
+.dir-btn {
+  flex: 1;
+  padding: 7px 0;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background: #fff;
+  font-size: 12px;
+  color: #555;
+  cursor: pointer;
+}
+
+.dir-btn.active {
+  background: #fff2dd;
+  border-color: #ffa500;
+  color: #b26b00;
+  font-weight: 700;
+}
+
+h2 {
+  margin: 14px 0 8px;
+  font-size: 13px;
+  color: #333;
+  border-left: 3px solid #ffa500;
+  padding-left: 8px;
+}
+
+.field-label {
+  display: block;
+  margin: 10px 0 4px;
+  font-weight: 600;
+  color: #444;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="search"],
+textarea {
+  width: 100%;
+  padding: 7px 9px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 13px;
+  font-family: inherit;
+  background: #fff;
+}
+
+textarea {
+  resize: vertical;
+}
+
+input:focus,
+textarea:focus {
+  outline: none;
+  border-color: #ffa500;
+  box-shadow: 0 0 0 2px rgba(255, 165, 0, 0.18);
+}
+
+.hint {
+  margin-top: 4px;
+  font-size: 11px;
+  color: #888;
+  line-height: 1.5;
+}
+
+.btn-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 10px;
+  flex-wrap: wrap;
+}
+
+.btn {
+  padding: 7px 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background: #fff;
+  font-size: 12px;
+  cursor: pointer;
+  color: #333;
+}
+
+.btn:hover {
+  background: #f2f2f2;
+}
+
+.btn.primary {
+  background: #ffa500;
+  border-color: #ffa500;
+  color: #fff;
+  font-weight: 600;
+}
+
+.btn.primary:hover {
+  background: #e69500;
+}
+
+.btn.small {
+  padding: 5px 9px;
+  font-size: 11px;
+}
+
+.btn.ghost {
+  background: transparent;
+}
+
+.btn.danger {
+  color: #d93025;
+  border-color: #d93025;
+}
+
+.btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.status {
+  font-size: 12px;
+  color: #1a7f37;
+  word-break: break-all;
+}
+
+.status.error {
+  color: #d93025;
+}
+
+.key-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.key-row input[type="password"],
+.key-row input[type="text"] {
+  flex: 1;
+}
+
+.inline-check {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  white-space: nowrap;
+  font-size: 12px;
+  color: #555;
+  cursor: pointer;
+}
+
+.style-row {
+  margin-top: 8px;
+}
+
+.color-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.color-row input[type="color"] {
+  width: 40px;
+  height: 30px;
+  padding: 0;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background: #fff;
+  cursor: pointer;
+}
+
+.color-row input[type="text"] {
+  width: 110px;
+  font-family: Consolas, monospace;
+}
+
+.result-card {
+  margin-top: 12px;
+  padding: 10px 12px;
+  border: 1px solid #ffd699;
+  border-radius: 8px;
+  background: #fffaf1;
+}
+
+.result-card.hidden {
+  display: none;
+}
+
+.result-title {
+  font-size: 11px;
+  color: #b26b00;
+  margin-bottom: 4px;
+}
+
+.result-text {
+  font-size: 14px;
+  line-height: 1.6;
+  white-space: pre-wrap;
+  word-break: break-word;
+  color: #d00000;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.result-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 8px;
+}
+
+.meta {
+  font-size: 11px;
+  color: #888;
+}
+
+.history {
+  margin-top: 16px;
+}
+
+.history h3 {
+  margin: 0 0 6px;
+  font-size: 12px;
+  color: #666;
+}
+
+.history ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.history li {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  padding: 6px 8px;
+  border-bottom: 1px solid #eee;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.history li:hover {
+  background: #fff;
+}
+
+.history .src {
+  color: #555;
+  max-width: 45%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.history .dst {
+  color: #d00000;
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.history .arrow {
+  flex-shrink: 0;
+  font-size: 10px;
+  color: #999;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  padding: 1px 4px;
+}
+
+.history .empty {
+  color: #999;
+  padding: 6px 8px;
+}
+
+.cache-stats {
+  padding: 8px 10px;
+  border-radius: 8px;
+  background: #eef4ff;
+  color: #1a56b0;
+  font-size: 12px;
+  margin-bottom: 10px;
+}
+
+.cache-actions {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+
+.cache-actions input {
+  flex: 1;
+}
+
+.cache-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.cache-item {
+  padding: 8px 10px;
+  border: 1px solid #e5e5e5;
+  border-radius: 8px;
+  background: #fff;
+}
+
+.cache-item .pair {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  font-size: 12px;
+}
+
+.cache-item .src {
+  color: #555;
+  max-width: 45%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.cache-item .dst {
+  color: #d00000;
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.cache-item .meta {
+  display: block;
+  margin-top: 4px;
+  font-size: 10px;
+  color: #999;
+}
+
+.cache-empty {
+  padding: 18px 0;
+  text-align: center;
+  color: #999;
+  font-size: 12px;
+}

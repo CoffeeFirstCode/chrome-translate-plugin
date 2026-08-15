@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI 英译中助手</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <header class="app-header">
+    <span class="logo">译</span>
+    <h1>AI 英译中助手</h1>
+  </header>
+
+  <nav class="tabs">
+    <button class="tab-btn active" data-tab="translate">翻译</button>
+    <button class="tab-btn" data-tab="settings">设置</button>
+    <button class="tab-btn" data-tab="cache">缓存</button>
+  </nav>
+
+  <main>
+    <!-- 翻译工具 -->
+    <section id="panel-translate" class="panel active">
+      <div class="direction-switch">
+        <button id="btnEnZh" class="dir-btn active">英译中</button>
+        <button id="btnZhEn" class="dir-btn">中译英</button>
+      </div>
+
+      <label class="field-label" for="sourceText" id="sourceLabel">英文原文</label>
+      <textarea id="sourceText" rows="4" maxlength="3000"
+        placeholder="输入英文单词或句子，例如：machine learning"></textarea>
+
+      <div class="btn-row">
+        <button id="btnTranslate" class="btn primary">翻译成中文</button>
+        <span id="translateStatus" class="status"></span>
+      </div>
+      <div class="hint">Ctrl + Enter 快捷翻译</div>
+
+      <div id="resultCard" class="result-card hidden">
+        <div class="result-title" id="resultTitle">中文译文</div>
+        <div id="resultText" class="result-text"></div>
+        <div class="result-meta">
+          <span id="resultMeta" class="meta"></span>
+          <button id="btnCopy" class="btn small">复制</button>
+        </div>
+      </div>
+
+      <div class="history">
+        <h3>最近记录</h3>
+        <ul id="historyList"></ul>
+      </div>
+    </section>
+
+    <!-- 设置 -->
+    <section id="panel-settings" class="panel">
+      <h2>AI 接口配置（OpenAI 协议 / LM Studio）</h2>
+
+      <label class="field-label" for="baseUrl">Base URL</label>
+      <input type="text" id="baseUrl" spellcheck="false"
+        placeholder="http://127.0.0.1:1234/v1">
+      <div class="hint">LM Studio 默认地址：http://127.0.0.1:1234/v1</div>
+
+      <label class="field-label" for="apiKey">API Key</label>
+      <div class="key-row">
+        <input type="password" id="apiKey" autocomplete="off"
+          placeholder="本地 LM Studio 可留空或填 lm-studio">
+        <label class="inline-check"><input type="checkbox" id="showKey"> 显示</label>
+      </div>
+
+      <label class="field-label" for="model">模型名称</label>
+      <input type="text" id="model" list="modelList" spellcheck="false"
+        placeholder="模型下载完成后，点下方按钮自动获取">
+      <datalist id="modelList"></datalist>
+
+      <div class="btn-row">
+        <button id="btnTest" class="btn">测试连接 / 获取模型</button>
+        <button id="btnSave" class="btn primary">保存设置</button>
+        <button id="btnReset" class="btn ghost">恢复默认</button>
+      </div>
+      <div id="settingsStatus" class="status"></div>
+
+      <h2>高亮与译文样式</h2>
+      <div class="style-row">
+        <label class="field-label" for="originalColor">原文颜色（橙黄）</label>
+        <div class="color-row">
+          <input type="color" id="originalColor">
+          <input type="text" id="originalColorText" maxlength="7" spellcheck="false">
+        </div>
+      </div>
+      <div class="style-row">
+        <label class="field-label" for="translationColor">译文颜色（红）</label>
+        <div class="color-row">
+          <input type="color" id="translationColor">
+          <input type="text" id="translationColorText" maxlength="7" spellcheck="false">
+        </div>
+      </div>
+      <div class="hint">
+        原文：加粗、字号变大、仅字体颜色（非背景色）；<br>
+        译文：位于原文下方，加粗、字号稍小、仅字体颜色（非背景色）。<br>
+        修改颜色后点击「保存设置」生效。
+      </div>
+    </section>
+
+    <!-- 缓存管理 -->
+    <section id="panel-cache" class="panel">
+      <div id="cacheStats" class="cache-stats">加载中…</div>
+
+      <div class="cache-actions">
+        <input type="search" id="cacheSearch" placeholder="搜索原文或译文">
+        <button id="btnRefreshCache" class="btn small">刷新</button>
+        <button id="btnClearCache" class="btn small danger">清空全部缓存</button>
+      </div>
+
+      <div id="cacheList" class="cache-list"></div>
+    </section>
+  </main>
+
+  <script src="popup.js"></script>
+</body>
+</html>
