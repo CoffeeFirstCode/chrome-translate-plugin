@@ -64,6 +64,7 @@
     $('#baseUrl').value = settings.baseUrl ?? '';
     $('#apiKey').value = settings.apiKey ?? '';
     $('#model').value = settings.model ?? '';
+    $('#selectionEnabled').checked = settings.selectionEnabled === true;
     const styles = settings.styles || {};
     $('#originalColor').value = styles.originalColor || DEFAULT_SETTINGS.styles.originalColor;
     $('#originalColorText').value = styles.originalColor || DEFAULT_SETTINGS.styles.originalColor;
@@ -452,6 +453,15 @@
     $('#btnCopy').addEventListener('click', copyResult);
     $('#btnEnZh').addEventListener('click', () => setDirection('en', 'zh'));
     $('#btnZhEn').addEventListener('click', () => setDirection('zh', 'en'));
+    $('#selectionEnabled').addEventListener('change', async () => {
+      const enabled = $('#selectionEnabled').checked;
+      const response = await send({ type: 'settings:save', settings: { selectionEnabled: enabled } });
+      if (response.ok) {
+        setStatus($('#translateStatus'), enabled ? '✓ 划选自动翻译已开启' : '已关闭划选自动翻译');
+      } else {
+        setStatus($('#translateStatus'), `✗ ${response.message || '保存失败'}`, true);
+      }
+    });
     $('#sourceText').addEventListener('keydown', (event) => {
       if (event.ctrlKey && event.key === 'Enter') {
         event.preventDefault();
