@@ -58,6 +58,9 @@ function validateSettingsPatch(patch) {
   if (Object.prototype.hasOwnProperty.call(source, 'model')) {
     clean.model = String(source.model ?? '').trim();
   }
+  if (Object.prototype.hasOwnProperty.call(source, 'selectionEnabled')) {
+    clean.selectionEnabled = Boolean(source.selectionEnabled);
+  }
   if (source.styles) {
     const originalColor = String(source.styles.originalColor ?? '').trim().toUpperCase();
     const translationColor = String(source.styles.translationColor ?? '').trim().toUpperCase();
