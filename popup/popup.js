@@ -7,6 +7,7 @@
     baseUrl: 'http://127.0.0.1:1234/v1',
     apiKey: '',
     model: '',
+    selectionEnabled: false,
     styles: { originalColor: '#FFA500', translationColor: '#FF0000' }
   };
   const HISTORY_KEY = 'history';
@@ -89,6 +90,7 @@
       baseUrl,
       apiKey: $('#apiKey').value.trim(),
       model: $('#model').value.trim(),
+      selectionEnabled: $('#selectionEnabled').checked,
       styles: { originalColor, translationColor }
     };
   }

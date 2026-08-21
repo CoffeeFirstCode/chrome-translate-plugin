@@ -100,6 +100,7 @@ chrome-translate-plugin/
 │   ├── test-local.mjs         # 缓存/API 纯逻辑与 mock 接口测试
 │   ├── test-background.mjs    # 后台消息链路集成测试
 │   ├── test-browser.mjs       # 真实浏览器端到端测试（支持 mock / 真实 LM Studio）
+│   ├── test-selection-toggle.mjs # 划选自动翻译开关链路端到端测试
 │   └── test-lmstudio.mjs      # LM Studio 真实模型联调测试
 └── icons/
 ```
@@ -150,7 +151,7 @@ node scripts/mock-openai.js
 
 ## 常见问题
 
-- **选中文字没反应**：确认划选的是英文、长度不超过 3000 字符、已保存 Base URL 和模型；个别站点（浏览器内置页、商店页）不允许注入脚本。
+- **选中文字没反应**：确认「划选自动翻译」开关已开启（插件 → 翻译页顶部）、划选的是英文、长度不超过 3000 字符、已保存 Base URL 和模型；修改过插件代码后需在 `chrome://extensions/` 重新加载扩展并刷新网页；个别站点（浏览器内置页、商店页）不允许注入脚本。
 - **提示 API Key 无效**：多数在线服务需要真实 Key；本地 LM Studio 可留空。
 - **提示 404**：检查 Base URL 是否以 `/v1` 结尾，以及 LM Studio Server 是否已启动。
 - **翻译很慢或超时**：首次加载模型较慢，可稍后重试；本地模型建议使用较小/量化模型提升速度。

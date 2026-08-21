@@ -29,12 +29,15 @@
   }
 
   function loadSettingsState() {
+    // 用 callback 形态读取：Firefox 的 chrome.* 别名下 chrome.storage 不支持 Promise，
+    // 旧写法 get(...).then() 会抛错被吞，导致 selectionEnabled 恒为 false、划选永不翻译
     try {
-      chrome.storage.local.get('settings').then((result) => {
+      chrome.storage.local.get('settings', (result) => {
+        void chrome.runtime.lastError;
         const settings = result?.settings || {};
         applyStyles(settings.styles);
         selectionEnabled = settings.selectionEnabled === true;
-      }).catch(() => {});
+      });
     } catch {
       // 扩展上下文失效时忽略
     }

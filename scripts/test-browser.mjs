@@ -317,6 +317,7 @@ try {
         baseUrl: ${JSON.stringify(activeBaseUrl)},
         apiKey: ${JSON.stringify(activeApiKey)},
         model: ${JSON.stringify(activeModel)},
+        selectionEnabled: true,
         styles: { originalColor: '#FFA500', translationColor: '#FF0000' }
       }
     }).then(() => 'saved')`);
@@ -393,6 +394,7 @@ try {
         baseUrl: ${JSON.stringify(activeBaseUrl)},
         apiKey: ${JSON.stringify(activeApiKey)},
         model: ${JSON.stringify(activeModel)},
+        selectionEnabled: true,
         styles: { originalColor: '#00AA00', translationColor: '#AA0000' }
       }
     }).then(() => 'updated')`);
@@ -454,6 +456,9 @@ try {
     await evaluate(pageCdp, `(() => {
       const input = document.querySelector('#sourceText');
       input.value = '世界';
+      // 清空上一轮结果，避免 waitFor 读到残留的旧结果
+      document.querySelector('#resultText').textContent = '';
+      document.querySelector('#resultMeta').textContent = '';
       document.querySelector('#btnTranslate').click();
       return input.value;
     })()`);
